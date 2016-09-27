@@ -1,5 +1,6 @@
 import json
 
+
 class CFG:
     """
     Contains a set of ProductionRules
@@ -24,8 +25,8 @@ class CFG:
 
         # The start symbol is always the first symbol
         start_symbol = symbols[0]
-        terminals = {sym for sym in cfg_str.split() if sym.isupper()}
-        non_terminals = {sym for sym in cfg_str.split() if sym.islower()()}
+        terminals = {sym for sym in symbols if sym.isupper()}
+        non_terminals = {sym for sym in symbols if sym.islower()()}
 
         return cls(dict({
             'terminals' : terminals,
@@ -61,6 +62,8 @@ class CFG:
         production_rules -> (possibly empty) list of strings in the following form:
         <nt> -> [sym] [sym] [sym] ...
         """
+        assert(set(dictionary.keys()) == {'terminals', 'non_terminals', 'start_symbol', 'production_rules'})
+
         for attr in {'terminals', 'non_terminals', 'start_symbol'}:
             setattr(self, attr, dictionary[attr])
 
@@ -69,11 +72,16 @@ class CFG:
 
 class ProductionRule:
     # The divider between the left side and the right side, not including whitespace
-    LHS_TO_RHS_DELIMITER = '->'
+    DELIMITER = '->'
 
     def __init__(self, line):
+        """
+        :param line: str of the following form:
+                     <nt> DELIMITER [sym] [sym] [sym] ...
+                     Eg: non_terminal_1 ->
+                     Eg: n -> T_3 T4 TERMINAL
+        """
         symbols = line.split()
         self.lhs = symbols[0]
-        self.rhs = symbols[2:].split()
-
-
+        assert(symbols[1] == self.DELIMITER)
+        self.rhs = symbols[2:]
