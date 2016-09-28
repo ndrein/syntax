@@ -1,4 +1,4 @@
-import json
+import json, string
 
 
 class CFG:
@@ -7,6 +7,37 @@ class CFG:
 
     Can be constructed using json, a CFG file, or dict
     """
+    @staticmethod
+    def multi_partition(lst, *predicates):
+        """
+        Partition lst into bins according to predicates
+
+        If the ith predicate holds for a given element, that element will fall into bin i
+        :param predicates: iterable of unary predicates
+        :return: iterable of sets, each containing some of the elements from lst
+        """
+        # Create an empty set for each predicate
+        bins = [set() for i in range(len(predicates))]
+        for elem in lst:
+            # If predicate i is true for this elem, add this elem to the ith set
+            for index, predicate in enumerate(predicates):
+                if predicate(elem):
+                    bins[index].add(elem)
+
+        return bins
+
+
+    @staticmethod
+    def is_terminal(word):
+        terminal_symbols = set(string.ascii_uppercase + string.digits + '_')
+        return word[0].isupper() and set(word) < terminal_symbols
+
+
+    @staticmethod
+    def is_non_terminal(word):
+        non_terminal_symbols = set(string.ascii_lowercase + string.digits + '_')
+        return word[0].islower() and set(word) < non_terminal_symbols
+
     @classmethod
     def from_cfg_file(cls, filename):
         """
@@ -25,8 +56,9 @@ class CFG:
 
         # The start symbol is always the first symbol
         start_symbol = symbols[0]
-        terminals = {sym for sym in symbols if sym.isupper()}
-        non_terminals = {sym for sym in symbols if sym.islower()()}
+
+        # All uppercase/lowercase words are terminals/non_terminals
+        terminals, non_terminals = cls.multi_partition(symbols, cls.is_terminal, cls.is_non_terminal)
 
         return cls(dict({
             'terminals' : terminals,
@@ -59,15 +91,15 @@ class CFG:
         terminals        -> list of strings
         non_terminals    -> list of strings
         start_symbol     -> string
-        production_rules -> (possibly empty) list of strings in the following form:
+        rules -> (possibly empty) list of strings in the following form:
         <nt> -> [sym] [sym] [sym] ...
         """
-        assert(set(dictionary.keys()) == {'terminals', 'non_terminals', 'start_symbol', 'production_rules'})
+        assert(set(dictionary.keys()) == {'terminals', 'non_terminals', 'start_symbol', 'rules'})
 
         for attr in {'terminals', 'non_terminals', 'start_symbol'}:
             setattr(self, attr, dictionary[attr])
 
-        self.rules = {ProductionRule(rule_str) for rule_str in dictionary['production_rules']}
+        self.rules = {ProductionRule(rule_str) for rule_str in dictionary['rules']}
 
 
 class ProductionRule:
