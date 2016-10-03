@@ -72,7 +72,6 @@ class Scanner:
             try:
                 consumed, remaining, final_state = self.dfa.traverse(remaining)
             except CantTraverse:
-                # TODO: use more specific information from CantTraverse
                 raise CantTokenize('Can\'t tokenize the remaining input:\n' + str(remaining))
 
             tokens.append(Token(self.state_map[final_state], consumed))
