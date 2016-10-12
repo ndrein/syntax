@@ -1,7 +1,6 @@
 import unittest, os
 
-# TODO: should be independent of lib
-from lib.syntax.syntax.parsing.cfg import CFG
+from syntax.parsing import CFG
 
 
 RESOURCE_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)),
