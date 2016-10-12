@@ -1,0 +1,6 @@
+{
+		"non_terminals": ["start", "next", "final"],
+		"terminals": ["T1", "T2"],
+		"start_symbol": "start",
+		"rules": ["start -> next T1 final", "next ->", "final -> final T2", "final -> next"]
+}

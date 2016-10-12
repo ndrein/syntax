@@ -1,16 +1,11 @@
 import unittest, os
 
 # TODO: should be independent of lib
-from lib.syntax.syntax.parser.cfg import CFG
+from lib.syntax.syntax.parsing.cfg import CFG
 
 
 RESOURCE_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)),
                              'resources')
-
-class CFGFileTester(unittest.TestCase):
-    def setUp(self):
-        pass
-    # TODO
 
 class SimpleCFG(unittest.TestCase):
     def setUp(self):
@@ -37,6 +32,7 @@ class SimpleCFG(unittest.TestCase):
 
     def test_simple_rules(self):
         assert(len(self.cfg.rules) == 1)
+        assert(str(self.cfg.rules[0]) == 'A -> a')
 
 
 class SimpleCFGFile(unittest.TestCase):
@@ -56,5 +52,38 @@ class SimpleCFGFile(unittest.TestCase):
         assert(self.cfg.start_symbol == 'start')
 
     def test_rules(self):
-        assert(len(self.cfg.rules) == 2)
+        assert(set(map(str, self.cfg.rules)) == {'start -> n', 'n -> TERMINAL'})
 
+
+class NullableCFG(unittest.TestCase):
+    def setUp(self):
+        self.cfg = CFG.from_cfg_str('s ->')
+
+    def test_terminals(self):
+        assert(self.cfg.terminals == set())
+
+    def test_non_terminals(self):
+        assert(self.cfg.non_terminals == {'s'})
+
+    def test_start_symbol(self):
+        assert(self.cfg.start_symbol == 's')
+
+    def test_rules(self):
+        assert(set(map(str, self.cfg.rules)) == {'s ->'})
+
+
+class JSONFileCFG(unittest.TestCase):
+    def setUp(self):
+        self.cfg = CFG.from_json_file(os.path.join(RESOURCE_PATH, 'simple.json'))
+
+    def test_terminals(self):
+        assert(self.cfg.terminals == {'T1', 'T2'})
+
+    def test_non_terminals(self):
+        assert(self.cfg.non_terminals == {'start', 'next', 'final'})
+
+    def test_rules(self):
+        assert(set(map(str, self.cfg.rules)) == {'start -> next T1 final',
+                                                 'next ->',
+                                                 'final -> final T2',
+                                                 'final -> next'})

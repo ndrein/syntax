@@ -1,5 +1,6 @@
 import json, string
 
+from syntax.parsing import ProductionRule
 
 class CFG:
     """
@@ -94,6 +95,7 @@ class CFG:
         rules -> (possibly empty) list of strings in the following form:
         <nt> -> [sym] [sym] [sym] ...
         """
+        # Make sure the dictionary contains the 4 components of a CFG
         assert(set(dictionary.keys()) == {'terminals', 'non_terminals', 'start_symbol', 'rules'})
 
         for attr in {'terminals', 'non_terminals', 'start_symbol'}:
@@ -101,19 +103,3 @@ class CFG:
 
         self.rules = {ProductionRule(rule_str) for rule_str in dictionary['rules']}
 
-
-class ProductionRule:
-    # The divider between the left side and the right side, not including whitespace
-    DELIMITER = '->'
-
-    def __init__(self, line):
-        """
-        :param line: str of the following form:
-                     <nt> DELIMITER [sym] [sym] [sym] ...
-                     Eg: non_terminal_1 ->
-                     Eg: n -> T_3 T4 TERMINAL
-        """
-        symbols = line.split()
-        self.lhs = symbols[0]
-        assert(symbols[1] == self.DELIMITER)
-        self.rhs = symbols[2:]

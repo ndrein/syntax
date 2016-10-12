@@ -10,7 +10,7 @@ To test:
 """
 import unittest
 
-from .scanner import CantTokenize
+from syntax.scanning import CantTokenize
 
 
 class TestScanner(unittest.TestCase):

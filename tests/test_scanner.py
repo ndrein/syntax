@@ -3,7 +3,7 @@ import unittest
 import string
 
 # TODO: should be independent of lib
-from lib.syntax.syntax.scanner import Scanner, Token, TestScanner
+from lib.syntax.syntax.scanning import Scanner, Token, TestScanner
 
 
 class TestSimpleDFA(TestScanner):

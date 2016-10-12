@@ -3,7 +3,7 @@
 import collections
 import string
 
-from lib.syntax.syntax.dfa import DFA, CantTraverse
+from syntax.dfa import DFA, CantTraverse
 
 
 Token = collections.namedtuple('Token', ['type', 'lexeme'])
