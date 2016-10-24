@@ -1,21 +1,18 @@
 class ProductionRule:
-    # The divider between the left side and the right side, not including whitespace
-    DELIMITER = '->'
-
     def __init__(self, line):
         """
         :param line: str of the following form:
-                     <nt> DELIMITER [sym] [sym] [sym] ...
+                     <nt> -> [sym] [sym] [sym] ...
                      Eg: non_terminal_1 ->
                      Eg: n -> T_3 T4 TERMINAL
         """
         symbols = line.split()
         self.lhs = symbols[0]
-        assert(symbols[1] == self.DELIMITER)
+        assert(symbols[1] == '->')
         self.rhs = tuple(symbols[2:])
 
     def __str__(self):
-        return self.lhs + ' ' + self.DELIMITER + [' ' + r_token for r_token in self.rhs]
+        return self.lhs + ' -> ' + ' ' if len(self.rhs) > 0 else '' + ' '.join(self.rhs)
 
     def __eq__(self, other):
         try:
