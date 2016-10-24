@@ -2,6 +2,7 @@ import json, string
 
 from syntax.parsing import ProductionRule
 
+
 class CFG:
     """
     Contains a set of ProductionRules
@@ -30,12 +31,28 @@ class CFG:
 
     @staticmethod
     def is_terminal(word):
+        """
+        Determine if word is a terminal
+
+        Terminals must begin with an uppercase letter and contain nothing
+        but uppercase letters, digits, and the underscore
+        :param word: string
+        :return: True / False
+        """
         terminal_symbols = set(string.ascii_uppercase + string.digits + '_')
         return word[0].isupper() and set(word) < terminal_symbols
 
 
     @staticmethod
     def is_non_terminal(word):
+        """
+        Determine if word is a non-terminal
+
+        Non-terminals must begin with an lowercase letter and contain nothing
+        but lowercase letters, digits, and the underscore
+        :param word: string
+        :return: True / False
+        """
         non_terminal_symbols = set(string.ascii_lowercase + string.digits + '_')
         return word[0].islower() and set(word) < non_terminal_symbols
 
@@ -45,12 +62,12 @@ class CFG:
         :param filename: path to cfg file
         :return: CFG
         """
-        return cls.from_cfg_str(open(filename, 'r').read())
+        return cls.from_cfg_str(open(filename).read())
 
     @classmethod
     def from_cfg_str(cls, cfg_str):
         """
-        :param cfg_str: raw str representing the CFG (with \n's)
+        :param cfg_str: raw str representing the CFG (with newlines)
         :return: CFG
         """
         symbols = cfg_str.split()
@@ -75,7 +92,7 @@ class CFG:
         :param filename: path to json file
         :return: CFG
         """
-        return cls.from_cfg_file(open(filename).read())
+        return cls.from_json_str(open(filename).read())
 
     @classmethod
     def from_json_str(cls, json_str):
@@ -98,8 +115,9 @@ class CFG:
         # Make sure the dictionary contains the 4 components of a CFG
         assert(set(dictionary.keys()) == {'terminals', 'non_terminals', 'start_symbol', 'rules'})
 
-        for attr in {'terminals', 'non_terminals', 'start_symbol'}:
-            setattr(self, attr, dictionary[attr])
+        self.terminals = set(dictionary['terminals'])
+        self.terminals = set(dictionary['non_terminals'])
+        self.start_symbol = dictionary['start_symbol']
 
         self.rules = {ProductionRule(rule_str) for rule_str in dictionary['rules']}
 
