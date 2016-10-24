@@ -31,7 +31,7 @@ class SimpleCFG(unittest.TestCase):
 
     def test_simple_rules(self):
         assert(len(self.cfg.rules) == 1)
-        assert(str(self.cfg.rules[0]) == 'A -> a')
+        assert(set(map(str, self.cfg.rules)) == {'A -> a'})
 
 
 class SimpleCFGFile(unittest.TestCase):
