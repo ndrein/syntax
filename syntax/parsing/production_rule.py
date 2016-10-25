@@ -12,7 +12,10 @@ class ProductionRule:
         self.rhs = tuple(symbols[2:])
 
     def __str__(self):
-        return self.lhs + ' -> ' + ' ' if len(self.rhs) > 0 else '' + ' '.join(self.rhs)
+        # Eg.
+        # non_term ->
+        # non_term -> term1 term2
+        return self.lhs + ' ->' + ('' if len(self.rhs) == 0 else ' ' + ' '.join(self.rhs))
 
     def __eq__(self, other):
         try:
