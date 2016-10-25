@@ -173,3 +173,37 @@ class SpaceQuotes(TestScanner):
 
     def test_bad_quote(self):
         self.assert_fails_tokenization(['"', ' '])
+
+
+class DefaultStateMap(TestScanner):
+    def setUp(self):
+        alphabet = ['a', 'b', 'c']
+        states = [0, 1, 2]
+        start_state = 0
+        accept_states = [2]
+
+        transitions = dict()
+        transitions[0, 'a'] = 1
+        transitions[1, 'a'] = 1
+        transitions[1, 'b'] = 2
+
+        self.scanner = Scanner(Scanner.DFA(alphabet, states, start_state, accept_states, transitions))
+
+    def test_empty_input(self):
+        self.compare_tokenized_input([], [])
+
+    def test_a(self):
+        self.compare_tokenized_input('ab', [Token(None, 'ab')])
+
+    def test_fails(self):
+        self.assert_fails_tokenization(['aaa'])
+
+    def test_large_token(self):
+        self.compare_tokenized_input(['a', 'a', 'a', 'a', 'b'],
+                                     [Token(None, ['a', 'a', 'a', 'a', 'b'])])
+
+    def test_many_tokens(self):
+        self.compare_tokenized_input('abaabaab',
+                                     [Token(None, 'ab'),
+                                      Token(None, 'aab'),
+                                      Token(None, 'aab')])

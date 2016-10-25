@@ -33,7 +33,7 @@ class Scanner:
     DFA = DFA
 
 
-    def __init__(self, dfa, state_map, token_delimiters=string.whitespace):
+    def __init__(self, dfa, state_map=None, token_delimiters=string.whitespace):
         """
         :param dfa: constructed using the Scanner.DFA class
         :param state_map: dict: state -> token type
@@ -44,7 +44,7 @@ class Scanner:
                                  token_delimieters are never part of a Token
         """
         self.dfa = dfa
-        self.state_map = state_map
+        self.state_map = state_map if state_map is not None else dict.fromkeys(range(len(dfa.states)))
         self.token_delimiters = token_delimiters
 
     def strip_leading_delimiters(self, input):
