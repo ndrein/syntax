@@ -116,7 +116,7 @@ class CFG:
         assert(set(dictionary.keys()) == {'terminals', 'non_terminals', 'start_symbol', 'rules'})
 
         self.terminals = set(dictionary['terminals'])
-        self.terminals = set(dictionary['non_terminals'])
+        self.non_terminals = set(dictionary['non_terminals'])
         self.start_symbol = dictionary['start_symbol']
 
         self.rules = {ProductionRule(rule_str) for rule_str in dictionary['rules']}
