@@ -1,4 +1,3 @@
-# TODO: rewrite using compare_tokenized_input from TestScanner
 import unittest
 import string
 
@@ -20,6 +19,8 @@ class TestSimpleDFA(TestScanner):
         transitions[2, 'a'] = 3
         transitions[3, 'b'] = 4
 
+        # Empty state map that maps to None
+        # The state map is not necessary for the purposes of this test
         state_map = dict.fromkeys(range(5))
 
         self.scanner = Scanner(Scanner.DFA(alphabet, states, start_state, accept_states, transitions), state_map)
@@ -47,7 +48,7 @@ class TestSimpleDFA(TestScanner):
         assert(tokens == [])
 
 
-class NumbersAndIDs(unittest.TestCase):
+class NumbersAndIDs(TestScanner):
     def setUp(self):
         alphabet = list('0123456789') + list(string.ascii_lowercase)
         states = {'start', 'zero', 'non_zero_numeric', 'id'}
