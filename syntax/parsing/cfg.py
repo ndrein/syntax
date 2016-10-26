@@ -12,21 +12,21 @@ class CFG:
     @staticmethod
     def multi_partition(lst, *predicates):
         """
-        Partition lst into bins according to predicates
+        Partition lst into lists according to predicates
 
         If the ith predicate holds for a given element, that element will fall into bin i
         :param predicates: iterable of unary predicates
         :return: iterable of sets, each containing some of the elements from lst
         """
         # Create an empty set for each predicate
-        bins = [set() for i in range(len(predicates))]
+        lists = [list() for i in range(len(predicates))]
         for elem in lst:
             # If predicate i is true for this elem, add this elem to the ith set
             for index, predicate in enumerate(predicates):
                 if predicate(elem):
-                    bins[index].add(elem)
+                    lists[index].append(elem)
 
-        return bins
+        return lists
 
 
     @staticmethod
