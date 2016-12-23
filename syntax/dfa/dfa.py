@@ -86,7 +86,7 @@ class DFA:
 
         :param input: iterable of symbols
         :return: list of munched symbols, list of remaining input, final valid state
-        :raises: CantTokenize
+        :raises: CantTraverse
         """
         current_state = self.start_state
         consumed, remaining = input[0:0], input
