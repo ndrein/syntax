@@ -27,23 +27,6 @@ class DFA:
             transitions[beginning_state, symbol] = end_state
         return transitions
 
-    @classmethod
-    def build_complement_transitions(cls, transitions, beginning_state, symbols, a, end_state_a, end_state_b):
-        """
-        Convenience method to add to the transitions dict to make a DFA
-        If we see an a, go to end_state_a
-        If we see one of the given symbols that's not a, go to end_state_b
-
-        :param transitions: transitions dict
-        :param symbols: set of symbols
-        :param a: symbol
-        :return: modified transitions dict
-        """
-        transitions = cls.build_multiple_transitions(transitions, beginning_state, {a}, end_state_a)
-        transitions = cls.build_multiple_transitions(transitions, beginning_state, symbols - {a}, end_state_b)
-        return transitions
-
-
     def __init__(self, alphabet, states, start_state, accept_states, transitions):
         """
         States and alphabet are arbitrary, but must have the equality (=) operator defined on them
@@ -64,20 +47,20 @@ class DFA:
         self.accept_states = accept_states
         self.transitions = transitions
 
-    def transition(self, state, symbol):
+    def _transition(self, state, symbol):
         """
         :return: a valid state if possible, otherwise the error state
         """
         return self.transitions[state, symbol] if (state, symbol) in self.transitions else ERROR_STATE
 
-    def is_accepting(self, state):
+    def _is_accepting(self, state):
         return state in self.accept_states
 
-    def can_traverse_more(self, current_state, input):
+    def _can_traverse_more(self, current_state, input):
         """
         Determine whether we can continue to process the input
         """
-        return len(input) > 0 and self.transition(current_state, input[0]) != ERROR_STATE
+        return len(input) > 0 and self._transition(current_state, input[0]) != ERROR_STATE
 
     def traverse(self, input):
         """
@@ -91,11 +74,11 @@ class DFA:
         current_state = self.start_state
         consumed, remaining = input[0:0], input
 
-        while self.can_traverse_more(current_state, remaining):
-            current_state = self.transition(current_state, remaining[0])
+        while self._can_traverse_more(current_state, remaining):
+            current_state = self._transition(current_state, remaining[0])
             consumed, remaining = consumed + remaining[:1], remaining[1:]
 
-        if self.is_accepting(current_state):
+        if self._is_accepting(current_state):
             return consumed, remaining, current_state
         else:
             # TODO: backtrack for Maximal Munch
