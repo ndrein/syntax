@@ -22,4 +22,8 @@ public class DFA {
         this.accept_states = accept_states;
         this.transitions = transitions;
     }
+
+    public boolean accepts(String input) {
+        return false;
+    }
 }
