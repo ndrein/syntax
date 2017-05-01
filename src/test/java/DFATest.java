@@ -8,11 +8,11 @@ import java.util.HashSet;
 
 
 abstract class DFATest {
-    final protected HashSet<Character> alphabet = makeAlphabet();
-    final protected HashSet<Integer> states = makeStates();
-    final protected Integer start_state = makeStartState();
-    final protected HashSet<Integer> accept_states = makeAcceptStates();
-    final protected Table<Integer, Character, Integer> transitions = makeTransitions();
+    final private HashSet<Character> alphabet = makeAlphabet();
+    final private HashSet<Integer> states = makeStates();
+    final private Integer start_state = makeStartState();
+    final private HashSet<Integer> accept_states = makeAcceptStates();
+    final private Table<Integer, Character, Integer> transitions = makeTransitions();
     final protected DFA dfa = new DFA(alphabet, states, start_state, accept_states, transitions);
 
     protected abstract HashSet<Character> makeAlphabet();
@@ -24,4 +24,7 @@ abstract class DFATest {
     protected abstract HashSet<Integer> makeAcceptStates();
 
     protected abstract Table<Integer, Character, Integer> makeTransitions();
+
+    @Test
+    void nullTest() { }
 }
