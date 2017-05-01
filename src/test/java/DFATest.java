@@ -8,14 +8,15 @@ class DFATest {
     private DFA dfa;
 
     @Test
-    void basicConstruction() {
+    void trivialConstruction() {
         new TrivialDFAGenerator().generate();
     }
 
     @Test
-    void complexConstruction() {
+    void simpleConstruction() {
         new SimpleDFAGenerator().generate();
     }
+
 }
 
 
