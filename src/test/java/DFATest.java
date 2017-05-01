@@ -16,7 +16,6 @@ class DFATest {
     void simpleConstruction() {
         new SimpleDFAGenerator().generate();
     }
-
 }
 
 
