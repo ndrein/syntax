@@ -24,12 +24,4 @@ abstract class DFATest {
     protected abstract HashSet<Integer> makeAcceptStates();
 
     protected abstract Table<Integer, Character, Integer> makeTransitions();
-
-    @Test
-    void testConstructor() {
-        // Implicitly tests the constructor
-    }
 }
-
-
-
