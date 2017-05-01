@@ -16,10 +16,10 @@ public class DFA {
 
     public DFA(HashSet<Character> alphabet, HashSet<Integer> states, Integer start_state,
                HashSet<Integer> accept_states, Table<Integer, Character, Integer> transitions) {
-        alphabet = alphabet;
-        states = states;
-        start_state = start_state;
-        accept_states = accept_states;
-        transitions = transitions;
+        this.alphabet = alphabet;
+        this.states = states;
+        this.start_state = start_state;
+        this.accept_states = accept_states;
+        this.transitions = transitions;
     }
 }
