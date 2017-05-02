@@ -8,6 +8,6 @@ import org.junit.jupiter.api.Test;
 class TrivialDFATest extends DFATest {
     @Test
     void testConstructor() {
-        new TrivialDFAFactory().generate();
+        new TrivialFactory().generate();
     }
 }

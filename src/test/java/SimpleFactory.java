@@ -8,7 +8,7 @@ import java.util.HashSet;
 /**
  * Created by ndrei on 2017-05-01.
  */
-class SimpleDFAFactory extends DFAFactory {
+class SimpleFactory extends DFAFactory {
     @Override
     protected HashSet<Character> makeAlphabet() {
         return new HashSet<>(Arrays.asList('a', 'b', 'c'));
