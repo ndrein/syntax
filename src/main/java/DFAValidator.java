@@ -7,7 +7,7 @@ import java.util.HashSet;
 /**
  * Created by ndrei on 2017-05-02.
  */
-public class DFAValidator {
+class DFAValidator {
     static void validate(HashSet<Character> alphabet,
                          HashSet<Integer> states, Integer start_state, HashSet<Integer> accept_states,
                          Table<Integer, Character, Integer> transitions) {
@@ -23,7 +23,7 @@ public class DFAValidator {
 
     private static void checkAcceptStates(HashSet<Integer> accept_states, HashSet<Integer> states) {
         if (!states.containsAll(accept_states))
-            throw new AcceptStatesNotContainedInStatesException("Accept states not contained in state set");
+            throw new AcceptStatesNotContainedInStatesException();
     }
 
     private static void checkTransitions(Table<Integer, Character, Integer> transitions,

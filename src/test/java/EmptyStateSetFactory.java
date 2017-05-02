@@ -4,6 +4,7 @@ import com.google.common.collect.HashBasedTable;
 import com.google.common.collect.Table;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
 
 /**
@@ -17,7 +18,7 @@ public class EmptyStateSetFactory extends DFAFactory {
 
     @Override
     protected HashSet<Integer> makeStates() {
-        return new HashSet<>(Arrays.asList());
+        return new HashSet<>(Collections.emptyList());
     }
 
     @Override

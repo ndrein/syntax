@@ -14,29 +14,21 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class InvalidDFAConstructionsTest extends DFATest {
     @Test
     void cantConstructWithEmptyStateSet() {
-        assertThrows(StartStateNotInStatesException.class, () -> {
-            new EmptyStateSetFactory().generate();
-        });
+        assertThrows(StartStateNotInStatesException.class, () -> new EmptyStateSetFactory().generate());
     }
 
     @Test
     void badAcceptStates() {
-        assertThrows(AcceptStatesNotContainedInStatesException.class, () -> {
-            new BadAcceptStatesFactory().generate();
-        });
+        assertThrows(AcceptStatesNotContainedInStatesException.class, () -> new BadAcceptStatesFactory().generate());
     }
 
     @Test
     void incompleteTransitions() {
-        assertThrows(IncompleteTransitionsException.class, () -> {
-            new IncompleteTransitionsFactory().generate();
-        });
+        assertThrows(IncompleteTransitionsException.class, () -> new IncompleteTransitionsFactory().generate());
     }
 
     @Test
     void transitionToInvalidState() {
-        assertThrows(InvalidTransitionException.class, () -> {
-            new TransitionToInvalidStateFactory().generate();
-        });
+        assertThrows(InvalidTransitionException.class, () -> new TransitionToInvalidStateFactory().generate());
     }
 }

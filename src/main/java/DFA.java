@@ -23,47 +23,5 @@ public class DFA {
         this.start_state = start_state;
         this.accept_states = accept_states;
         this.transitions = transitions;
-
-//        validateConstruction();
-    }
-
-    private void validateConstruction() {
-        checkStartState();
-        checkAcceptStates();
-        checkTransitions();
-    }
-
-    private void checkStartState() {
-        if (!states.contains(start_state))
-            throw new StartStateNotInStatesException();
-    }
-
-    private void checkAcceptStates() {
-        if (!states.containsAll(accept_states))
-            throw new AcceptStatesNotContainedInStatesException("Accept states not contained in state set");
-    }
-
-    private void checkTransitions() {
-        for (Integer q : states) {
-            for (Character c : alphabet) {
-                checkTransition(q, c);
-            }
-        }
-    }
-
-    private void checkTransition(Integer q, Character c) {
-        checkTransitionDefined(q, c);
-        checkTransitionValid(q, c);
-    }
-
-    private void checkTransitionDefined(Integer q, Character c) {
-        if (!transitions.contains(q, c))
-            throw new IncompleteTransitionsException(String.format("No transition defined for %d x %s", q, c));
-    }
-
-    private void checkTransitionValid(Integer q, Character c) {
-        Integer next = transitions.get(q, c);
-        if (!states.contains(next))
-            throw new InvalidTransitionException(String.format("Transition %d x %c -> %d is invalid", q, c, next));
     }
 }
