@@ -4,6 +4,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -35,5 +37,17 @@ class SimpleDFATest extends DFATest {
     @Test
     void doesNotAcceptABA() {
         assertFalse(new SimpleFactory().generate().accepts(Arrays.asList('a', 'b', 'a')));
+    }
+
+    @Test
+    void acceptsLongInput() {
+        List<Character> input = new LinkedList<Character>();
+        for (int i = 0; i < 1000; ++i) {
+            input.add('a');
+            input.add('b');
+        }
+        input.add('c');
+
+        assertTrue(new SimpleFactory().generate().accepts(input));
     }
 }
