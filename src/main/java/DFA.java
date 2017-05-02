@@ -9,11 +9,11 @@ import java.util.List;
  * Created by ndrei on 2017-04-27.
  */
 public class DFA {
-    private HashSet<Character> alphabet;
-    private HashSet<Integer> states;
-    private Integer start_state;
-    private HashSet<Integer> accept_states;
-    private Table<Integer, Character, Integer> transitions;
+    final private HashSet<Character> alphabet;
+    final private HashSet<Integer> states;
+    final private Integer start_state;
+    final private HashSet<Integer> accept_states;
+    final private Table<Integer, Character, Integer> transitions;
 
     public DFA(HashSet<Character> alphabet, HashSet<Integer> states, Integer start_state,
                HashSet<Integer> accept_states, Table<Integer, Character, Integer> transitions) {
