@@ -1,24 +1,24 @@
-package test.java;
+package test.java.factories;
 
 import com.google.common.collect.HashBasedTable;
 import com.google.common.collect.Table;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 
-
 /**
- * Created by ndrei on 2017-05-01.
+ * Created by ndrei on 2017-05-02.
  */
-class TrivialFactory extends DFAFactory {
+public class EmptyStateSetFactory extends DFAFactory {
     @Override
     protected HashSet<Character> makeAlphabet() {
-        return new HashSet<>();
+        return new HashSet<>(Arrays.asList('a', 'b'));
     }
 
     @Override
     protected HashSet<Integer> makeStates() {
-        return new HashSet<>(Collections.singletonList(0));
+        return new HashSet<>(Collections.emptyList());
     }
 
     @Override
@@ -28,7 +28,7 @@ class TrivialFactory extends DFAFactory {
 
     @Override
     protected HashSet<Integer> makeAcceptStates() {
-        return new HashSet<>(Collections.emptyList());
+        return new HashSet<>();
     }
 
     @Override
@@ -36,4 +36,3 @@ class TrivialFactory extends DFAFactory {
         return HashBasedTable.create();
     }
 }
-

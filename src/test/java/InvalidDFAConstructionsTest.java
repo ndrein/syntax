@@ -5,6 +5,10 @@ import main.java.exceptions.IncompleteTransitions;
 import main.java.exceptions.InvalidTransition;
 import main.java.exceptions.StartStateNotInStates;
 import org.junit.jupiter.api.Test;
+import test.java.factories.BadAcceptStatesFactory;
+import test.java.factories.EmptyStateSetFactory;
+import test.java.factories.IncompleteTransitionsFactory;
+import test.java.factories.TransitionToInvalidStateFactory;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 

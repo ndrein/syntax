@@ -1,6 +1,7 @@
 package test.java;
 
 import org.junit.jupiter.api.Test;
+import test.java.factories.SimpleFactory;
 
 import java.util.Arrays;
 import java.util.Collections;

@@ -1,16 +1,15 @@
-package test.java;
+package test.java.factories;
 
 import com.google.common.collect.HashBasedTable;
 import com.google.common.collect.Table;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashSet;
 
 /**
  * Created by ndrei on 2017-05-02.
  */
-public class EmptyStateSetFactory extends DFAFactory {
+public class IncompleteTransitionsFactory extends DFAFactory {
     @Override
     protected HashSet<Character> makeAlphabet() {
         return new HashSet<>(Arrays.asList('a', 'b'));
@@ -18,7 +17,7 @@ public class EmptyStateSetFactory extends DFAFactory {
 
     @Override
     protected HashSet<Integer> makeStates() {
-        return new HashSet<>(Collections.emptyList());
+        return new HashSet<>(Arrays.asList(0, 1));
     }
 
     @Override
@@ -33,6 +32,10 @@ public class EmptyStateSetFactory extends DFAFactory {
 
     @Override
     protected Table<Integer, Character, Integer> makeTransitions() {
-        return HashBasedTable.create();
+        Table<Integer, Character, Integer> transitions = HashBasedTable.create();
+        transitions.put(0, 'a', 0);
+        transitions.put(0, 'b', 1);
+        transitions.put(1, 'b', 0);
+        return transitions;
     }
 }

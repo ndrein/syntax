@@ -1,4 +1,4 @@
-package test.java;
+package test.java.factories;
 
 import com.google.common.collect.HashBasedTable;
 import com.google.common.collect.Table;
@@ -9,15 +9,10 @@ import java.util.HashSet;
 /**
  * Created by ndrei on 2017-05-02.
  */
-public class IncompleteTransitionsFactory extends DFAFactory {
+public class BadAcceptStatesFactory extends DFAFactory {
     @Override
     protected HashSet<Character> makeAlphabet() {
         return new HashSet<>(Arrays.asList('a', 'b'));
-    }
-
-    @Override
-    protected HashSet<Integer> makeStates() {
-        return new HashSet<>(Arrays.asList(0, 1));
     }
 
     @Override
@@ -26,16 +21,17 @@ public class IncompleteTransitionsFactory extends DFAFactory {
     }
 
     @Override
+    protected HashSet<Integer> makeStates() {
+        return new HashSet<>(Arrays.asList(0, 1, 2));
+    }
+
+    @Override
     protected HashSet<Integer> makeAcceptStates() {
-        return new HashSet<>();
+        return new HashSet<>(Arrays.asList(0, 3));
     }
 
     @Override
     protected Table<Integer, Character, Integer> makeTransitions() {
-        Table<Integer, Character, Integer> transitions = HashBasedTable.create();
-        transitions.put(0, 'a', 0);
-        transitions.put(0, 'b', 1);
-        transitions.put(1, 'b', 0);
-        return transitions;
+        return HashBasedTable.create();
     }
 }

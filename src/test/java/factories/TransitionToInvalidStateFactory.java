@@ -1,4 +1,4 @@
-package test.java;
+package test.java.factories;
 
 import com.google.common.collect.HashBasedTable;
 import com.google.common.collect.Table;

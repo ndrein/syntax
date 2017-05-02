@@ -2,6 +2,7 @@ package test.java;
 
 import main.java.exceptions.InvalidDFAInput;
 import org.junit.jupiter.api.Test;
+import test.java.factories.TrivialFactory;
 
 import java.util.Collections;
 
