@@ -1,6 +1,5 @@
 package test.java;
 
-import main.java.DFA;
 import org.junit.jupiter.api.Test;
 
 /**
