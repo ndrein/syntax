@@ -35,11 +35,5 @@ class TrivialFactory extends DFAFactory {
     protected Table<Integer, Character, Integer> makeTransitions() {
         return HashBasedTable.create();
     }
-
-//    @Test
-//    void cannotAcceptWithEmptyAlphabet() {
-//        assertThrows(EmptyAlphabetException.class, () -> dfa.accepts("a"));
-//        dfa.accepts("a");
-//    }
 }
 

@@ -11,6 +11,7 @@ class DFAValidator {
     static void validate(HashSet<Character> alphabet,
                          HashSet<Integer> states, Integer start_state, HashSet<Integer> accept_states,
                          Table<Integer, Character, Integer> transitions) {
+        // Throws exception if not valid
         checkStartState(start_state, states);
         checkAcceptStates(accept_states, states);
         checkTransitions(transitions, states, alphabet);
