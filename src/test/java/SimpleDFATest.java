@@ -1,40 +1,18 @@
 package test.java;
 
-import com.google.common.collect.HashBasedTable;
-
-import java.util.Arrays;
-import java.util.HashSet;
+import main.java.DFA;
+import org.junit.jupiter.api.Test;
 
 /**
- * Created by ndrei on 2017-05-01.
+ * Created by ndrei on 2017-05-02.
  */
 class SimpleDFATest extends DFATest {
-    @Override
-    protected HashSet<Character> makeAlphabet() {
-        return new HashSet<>(Arrays.asList('a', 'b', 'c'));
+    SimpleDFATest() {
+        super(new SimpleDFAFactory());
     }
 
-    @Override
-    protected HashSet<Integer> makeStates() {
-        return new HashSet<>(Arrays.asList(0, 1, 2));
-    }
+    @Test
+    void emptyTest() {
 
-    @Override
-    protected Integer makeStartState() {
-        return 0;
-    }
-
-    @Override
-    protected HashSet<Integer> makeAcceptStates() {
-        return new HashSet<>(Arrays.asList(0, 2));
-    }
-
-    @Override
-    protected HashBasedTable<Integer, Character, Integer> makeTransitions() {
-        HashBasedTable<Integer, Character, Integer> transitions = HashBasedTable.create();
-        transitions.put(0, 'a', 1);
-        transitions.put(1, 'c', 0);
-        transitions.put(2, 'b', 2);
-        return transitions;
     }
 }

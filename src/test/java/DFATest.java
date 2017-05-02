@@ -1,30 +1,21 @@
 package test.java;
 
-import com.google.common.collect.Table;
 import main.java.DFA;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeEach;
 
-import java.util.HashSet;
-
-
+/**
+ * Created by ndrei on 2017-05-02.
+ */
 abstract class DFATest {
-    final private HashSet<Character> alphabet = makeAlphabet();
-    final private HashSet<Integer> states = makeStates();
-    final private Integer start_state = makeStartState();
-    final private HashSet<Integer> accept_states = makeAcceptStates();
-    final private Table<Integer, Character, Integer> transitions = makeTransitions();
-    final protected DFA dfa = new DFA(alphabet, states, start_state, accept_states, transitions);
+    final DFAFactory dfaFactory;
+    protected DFA dfa;
 
-    protected abstract HashSet<Character> makeAlphabet();
+    protected DFATest(DFAFactory dfaFactory) {
+        this.dfaFactory = dfaFactory;
+    }
 
-    protected abstract HashSet<Integer> makeStates();
-
-    protected abstract Integer makeStartState();
-
-    protected abstract HashSet<Integer> makeAcceptStates();
-
-    protected abstract Table<Integer, Character, Integer> makeTransitions();
-
-    @Test
-    void nullTest() { }
+    @BeforeEach
+    void setUp() {
+        dfa = dfaFactory.generate();
+    }
 }

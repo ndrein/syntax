@@ -23,7 +23,7 @@ public class DFA {
         this.transitions = transitions;
     }
 
-    public boolean accepts(String input) {
-        return false;
-    }
+//    public boolean accepts(String input) throws EmptyAlphabetException {
+//        throw new EmptyAlphabetException();
+//    }
 }
