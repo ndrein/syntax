@@ -1,6 +1,7 @@
 package main.java;
 
 import com.google.common.collect.Table;
+import main.java.exceptions.InvalidDFAInput;
 
 import java.util.HashSet;
 import java.util.List;

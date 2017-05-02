@@ -1,6 +1,6 @@
 package test.java;
 
-import main.java.InvalidDFAInput;
+import main.java.exceptions.InvalidDFAInput;
 import org.junit.jupiter.api.Test;
 
 import java.util.Collections;

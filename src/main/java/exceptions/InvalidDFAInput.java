@@ -1,4 +1,4 @@
-package main.java;
+package main.java.exceptions;
 
 /**
  * Created by ndrei on 2017-05-02.

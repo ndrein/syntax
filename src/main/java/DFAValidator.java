@@ -1,6 +1,10 @@
 package main.java;
 
 import com.google.common.collect.Table;
+import main.java.exceptions.AcceptStatesNotContainedInStates;
+import main.java.exceptions.IncompleteTransitions;
+import main.java.exceptions.InvalidTransition;
+import main.java.exceptions.StartStateNotInStates;
 
 import java.util.HashSet;
 
@@ -19,12 +23,12 @@ class DFAValidator {
 
     private static void checkStartState(Integer start_state, HashSet<Integer> states) {
         if (!states.contains(start_state))
-            throw new StartStateNotInStatesException();
+            throw new StartStateNotInStates();
     }
 
     private static void checkAcceptStates(HashSet<Integer> accept_states, HashSet<Integer> states) {
         if (!states.containsAll(accept_states))
-            throw new AcceptStatesNotContainedInStatesException();
+            throw new AcceptStatesNotContainedInStates();
     }
 
     private static void checkTransitions(Table<Integer, Character, Integer> transitions,
@@ -46,7 +50,7 @@ class DFAValidator {
     private static void checkTransitionDefined(Integer q, Character c,
                                                Table<Integer, Character, Integer> transitions) {
         if (!transitions.contains(q, c))
-            throw new IncompleteTransitionsException(String.format("No transition defined for %d x %s", q, c));
+            throw new IncompleteTransitions(String.format("No transition defined for %d x %s", q, c));
     }
 
     private static void checkTransitionValid(Integer q, Character c,
@@ -54,6 +58,6 @@ class DFAValidator {
                                              HashSet<Integer> states) {
         Integer next = transitions.get(q, c);
         if (!states.contains(next))
-            throw new InvalidTransitionException(String.format("Transition %d x %c -> %d is invalid", q, c, next));
+            throw new InvalidTransition(String.format("Transition %d x %c -> %d is invalid", q, c, next));
     }
 }

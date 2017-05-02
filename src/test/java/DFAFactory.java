@@ -2,7 +2,7 @@ package test.java;
 
 import com.google.common.collect.Table;
 import main.java.DFA;
-import main.java.InvalidDFAConstructionException;
+import main.java.exceptions.InvalidDFAConstruction;
 
 import java.util.HashSet;
 
@@ -21,7 +21,7 @@ abstract class DFAFactory {
 
     protected abstract Table<Integer, Character, Integer> makeTransitions();
 
-    public DFA generate() throws InvalidDFAConstructionException {
+    public DFA generate() throws InvalidDFAConstruction {
         return new DFA(makeAlphabet(), makeStates(), makeStartState(), makeAcceptStates(), makeTransitions());
     }
 }

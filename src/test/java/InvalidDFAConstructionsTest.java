@@ -1,9 +1,9 @@
 package test.java;
 
-import main.java.AcceptStatesNotContainedInStatesException;
-import main.java.IncompleteTransitionsException;
-import main.java.InvalidTransitionException;
-import main.java.StartStateNotInStatesException;
+import main.java.exceptions.AcceptStatesNotContainedInStates;
+import main.java.exceptions.IncompleteTransitions;
+import main.java.exceptions.InvalidTransition;
+import main.java.exceptions.StartStateNotInStates;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -14,21 +14,21 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class InvalidDFAConstructionsTest extends DFATest {
     @Test
     void cantConstructWithEmptyStateSet() {
-        assertThrows(StartStateNotInStatesException.class, () -> new EmptyStateSetFactory().generate());
+        assertThrows(StartStateNotInStates.class, () -> new EmptyStateSetFactory().generate());
     }
 
     @Test
     void badAcceptStates() {
-        assertThrows(AcceptStatesNotContainedInStatesException.class, () -> new BadAcceptStatesFactory().generate());
+        assertThrows(AcceptStatesNotContainedInStates.class, () -> new BadAcceptStatesFactory().generate());
     }
 
     @Test
     void incompleteTransitions() {
-        assertThrows(IncompleteTransitionsException.class, () -> new IncompleteTransitionsFactory().generate());
+        assertThrows(IncompleteTransitions.class, () -> new IncompleteTransitionsFactory().generate());
     }
 
     @Test
     void transitionToInvalidState() {
-        assertThrows(InvalidTransitionException.class, () -> new TransitionToInvalidStateFactory().generate());
+        assertThrows(InvalidTransition.class, () -> new TransitionToInvalidStateFactory().generate());
     }
 }
