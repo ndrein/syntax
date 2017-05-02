@@ -16,13 +16,15 @@ public class DFA {
 
     public DFA(HashSet<Character> alphabet, HashSet<Integer> states, Integer start_state,
                HashSet<Integer> accept_states, Table<Integer, Character, Integer> transitions) {
+        DFAValidator.validate(alphabet, states, start_state, accept_states, transitions);
+
         this.alphabet = alphabet;
         this.states = states;
         this.start_state = start_state;
         this.accept_states = accept_states;
         this.transitions = transitions;
 
-        validateConstruction();
+//        validateConstruction();
     }
 
     private void validateConstruction() {
@@ -33,12 +35,12 @@ public class DFA {
 
     private void checkStartState() {
         if (!states.contains(start_state))
-            throw new InvalidDFAConstructionException("Start state not in state set");
+            throw new StartStateNotInStatesException();
     }
 
     private void checkAcceptStates() {
         if (!states.containsAll(accept_states))
-            throw new InvalidDFAConstructionException("Accept states not contained in state set");
+            throw new AcceptStatesNotContainedInStatesException("Accept states not contained in state set");
     }
 
     private void checkTransitions() {
@@ -56,12 +58,12 @@ public class DFA {
 
     private void checkTransitionDefined(Integer q, Character c) {
         if (!transitions.contains(q, c))
-            throw new InvalidDFAConstructionException(String.format("No transition defined for %d x %s", q, c));
+            throw new IncompleteTransitionsException(String.format("No transition defined for %d x %s", q, c));
     }
 
     private void checkTransitionValid(Integer q, Character c) {
         Integer next = transitions.get(q, c);
         if (!states.contains(next))
-            throw new InvalidDFAConstructionException(String.format("Transition %d x %c -> %d is invalid", q, c, next));
+            throw new InvalidTransitionException(String.format("Transition %d x %c -> %d is invalid", q, c, next));
     }
 }

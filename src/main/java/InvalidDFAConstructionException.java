@@ -7,4 +7,8 @@ public class InvalidDFAConstructionException extends RuntimeException {
     public InvalidDFAConstructionException(String msg) {
         super(msg);
     }
+
+    public InvalidDFAConstructionException() {
+
+    }
 }
