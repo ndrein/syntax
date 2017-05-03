@@ -9,7 +9,7 @@ import java.util.HashSet;
 /**
  * Created by ndrei on 2017-05-02.
  */
-public class IncompleteTransitionsFactory extends DFAFactory {
+public class TransitionToInvalidStateGenerator extends DFAGenerator {
     @Override
     protected HashSet<Character> makeAlphabet() {
         return new HashSet<>(Arrays.asList('a', 'b'));
@@ -33,9 +33,12 @@ public class IncompleteTransitionsFactory extends DFAFactory {
     @Override
     protected Table<Integer, Character, Integer> makeTransitions() {
         Table<Integer, Character, Integer> transitions = HashBasedTable.create();
+
         transitions.put(0, 'a', 0);
         transitions.put(0, 'b', 1);
-        transitions.put(1, 'b', 0);
+        transitions.put(1, 'a', 2);
+        transitions.put(1, 'b', 1);
+
         return transitions;
     }
 }

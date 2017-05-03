@@ -7,8 +7,8 @@ import main.java.exceptions.InvalidDFAConstruction;
 import java.util.HashSet;
 
 
-abstract class DFAFactory {
-    // Subclasses of the DFAFactory can generate specific DFA instances
+abstract class DFAGenerator {
+    // Subclasses of the DFAGenerator can generate specific DFA instances
     // These specific instances are for use in testing
 
     protected abstract HashSet<Character> makeAlphabet();

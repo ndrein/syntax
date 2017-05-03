@@ -2,8 +2,8 @@ package test.java;
 
 import main.java.exceptions.InvalidDFAInput;
 import org.junit.jupiter.api.Test;
-import test.java.factories.SimpleFactory;
-import test.java.factories.TrivialFactory;
+import test.java.factories.SimpleGenerator;
+import test.java.factories.TrivialGenerator;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -18,39 +18,44 @@ import static org.junit.jupiter.api.Assertions.*;
 class AcceptsTest extends DFATest {
     @Test
     void throwsIfInputNotInAlphabet() {
-        dfa = new TrivialFactory().generate();
+        dfa = new TrivialGenerator().generate();
         assertThrows(InvalidDFAInput.class, () -> dfa.accepts(Collections.singletonList('a')));
     }
 
     @Test
     void acceptsEmptyString() {
-        assertTrue(new SimpleFactory().generate().accepts(Collections.emptyList()));
+        assertTrue(new SimpleGenerator().generate().accepts(Collections.emptyList()));
     }
 
     @Test
     void acceptsC() {
-        assertTrue(new SimpleFactory().generate().accepts(Arrays.asList('c')));
+        assertTrue(new SimpleGenerator().generate().accepts(Arrays.asList('c')));
     }
 
     @Test
     void acceptsABABCC() {
-        assertTrue(new SimpleFactory().generate().accepts(Arrays.asList('a', 'b', 'a', 'b', 'c', 'c')));
+        assertTrue(new SimpleGenerator().generate().accepts(Arrays.asList('a', 'b', 'a', 'b', 'c', 'c')));
     }
 
     @Test
     void doesNotAcceptABA() {
-        assertFalse(new SimpleFactory().generate().accepts(Arrays.asList('a', 'b', 'a')));
+        assertFalse(new SimpleGenerator().generate().accepts(Arrays.asList('a', 'b', 'a')));
     }
 
     @Test
     void acceptsLongInput() {
-        List<Character> input = new LinkedList<Character>();
-        for (int i = 0; i < 1000; ++i) {
-            input.add('a');
-            input.add('b');
-        }
+        List<Character> input = longABs();
         input.add('c');
 
-        assertTrue(new SimpleFactory().generate().accepts(input));
+        assertTrue(new SimpleGenerator().generate().accepts(input));
+    }
+
+    List<Character> longABs() {
+        List<Character> list = new LinkedList<>();
+        for (int i = 0; i < 1000; ++i) {
+            list.add('a');
+            list.add('b');
+        }
+        return list;
     }
 }
