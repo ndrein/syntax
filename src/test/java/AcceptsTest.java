@@ -2,8 +2,8 @@ package test.java;
 
 import main.java.exceptions.InvalidDFAInput;
 import org.junit.jupiter.api.Test;
-import test.java.factories.SimpleGenerator;
-import test.java.factories.TrivialGenerator;
+import test.java.generators.SimpleGenerator;
+import test.java.generators.TrivialGenerator;
 
 import java.util.Arrays;
 import java.util.Collections;

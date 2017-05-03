@@ -1,4 +1,4 @@
-package test.java.factories;
+package test.java.generators;
 
 import com.google.common.collect.Table;
 import main.java.DFA;

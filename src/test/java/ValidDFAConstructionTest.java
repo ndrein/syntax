@@ -1,8 +1,8 @@
 package test.java;
 
 import org.junit.jupiter.api.Test;
-import test.java.factories.SimpleGenerator;
-import test.java.factories.TrivialGenerator;
+import test.java.generators.SimpleGenerator;
+import test.java.generators.TrivialGenerator;
 
 /**
  * Created by ndrei on 2017-05-02.

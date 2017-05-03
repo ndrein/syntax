@@ -1,18 +1,24 @@
-package test.java.factories;
+package test.java.generators;
 
 import com.google.common.collect.HashBasedTable;
 import com.google.common.collect.Table;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
 
 /**
  * Created by ndrei on 2017-05-02.
  */
-public class BadAcceptStatesGenerator extends DFAGenerator {
+public class EmptyStateSetGenerator extends DFAGenerator {
     @Override
     protected HashSet<Character> makeAlphabet() {
         return new HashSet<>(Arrays.asList('a', 'b'));
+    }
+
+    @Override
+    protected HashSet<Integer> makeStates() {
+        return new HashSet<>(Collections.emptyList());
     }
 
     @Override
@@ -21,13 +27,8 @@ public class BadAcceptStatesGenerator extends DFAGenerator {
     }
 
     @Override
-    protected HashSet<Integer> makeStates() {
-        return new HashSet<>(Arrays.asList(0, 1, 2));
-    }
-
-    @Override
     protected HashSet<Integer> makeAcceptStates() {
-        return new HashSet<>(Arrays.asList(0, 3));
+        return new HashSet<>();
     }
 
     @Override
