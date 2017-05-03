@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 /**
  * Created by ndrei on 2017-05-02.
  */
-public class InvalidDFAConstructionsTest extends DFATest {
+public class InvalidDFAConstructionsTest {
     @Test
     void cantConstructWithEmptyStateSet() {
         assertThrows(StartStateNotInStates.class, () -> new EmptyStateSetGenerator().generate());

@@ -1,5 +1,6 @@
 package test.java;
 
+import main.java.DFA;
 import main.java.exceptions.InvalidDFAInput;
 import org.junit.jupiter.api.Test;
 import test.java.generators.SimpleGenerator;
@@ -15,10 +16,10 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * Created by ndrei on 2017-05-02.
  */
-class AcceptsTest extends DFATest {
+class AcceptsTest {
     @Test
     void throwsIfInputNotInAlphabet() {
-        dfa = new TrivialGenerator().generate();
+        DFA dfa = new TrivialGenerator().generate();
         assertThrows(InvalidDFAInput.class, () -> dfa.accepts(Collections.singletonList('a')));
     }
 
