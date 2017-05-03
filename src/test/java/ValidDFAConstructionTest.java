@@ -1,8 +1,9 @@
 package test.java;
 
+import main.java.DFA;
+import main.java.generators.SimpleGenerator;
+import main.java.generators.TrivialGenerator;
 import org.junit.jupiter.api.Test;
-import test.java.generators.SimpleGenerator;
-import test.java.generators.TrivialGenerator;
 
 /**
  * Created by ndrei on 2017-05-02.
@@ -10,11 +11,11 @@ import test.java.generators.TrivialGenerator;
 public class ValidDFAConstructionTest {
     @Test
     void testConstructingTrivialDFA() {
-        new TrivialGenerator().generate();
+        new DFA(new TrivialGenerator());
     }
 
     @Test
     void testConstructingSimpleDFA() {
-        new SimpleGenerator().generate();
+        new DFA(new SimpleGenerator());
     }
 }

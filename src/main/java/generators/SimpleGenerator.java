@@ -1,4 +1,4 @@
-package test.java.generators;
+package main.java.generators;
 
 import com.google.common.collect.HashBasedTable;
 
@@ -10,27 +10,27 @@ import java.util.HashSet;
  */
 public class SimpleGenerator extends DFAGenerator {
     @Override
-    protected HashSet<Character> makeAlphabet() {
+    public HashSet<Character> makeAlphabet() {
         return new HashSet<>(Arrays.asList('a', 'b', 'c'));
     }
 
     @Override
-    protected HashSet<Integer> makeStates() {
+    public HashSet<Integer> makeStates() {
         return new HashSet<>(Arrays.asList(0, 1, 2));
     }
 
     @Override
-    protected Integer makeStartState() {
+    public Integer makeStartState() {
         return 0;
     }
 
     @Override
-    protected HashSet<Integer> makeAcceptStates() {
+    public HashSet<Integer> makeAcceptStates() {
         return new HashSet<>(Arrays.asList(0, 2));
     }
 
     @Override
-    protected HashBasedTable<Integer, Character, Integer> makeTransitions() {
+    public HashBasedTable<Integer, Character, Integer> makeTransitions() {
         HashBasedTable<Integer, Character, Integer> transitions = HashBasedTable.create();
 
         transitions.put(0, 'a', 1);

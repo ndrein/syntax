@@ -2,6 +2,7 @@ package main.java;
 
 import com.google.common.collect.Table;
 import main.java.exceptions.InvalidDFAInput;
+import main.java.generators.DFAGenerator;
 
 import java.util.HashSet;
 import java.util.List;
@@ -15,6 +16,10 @@ public class DFA {
     final private Integer start_state;
     final private HashSet<Integer> accept_states;
     final private Table<Integer, Character, Integer> transitions;
+
+    public DFA(DFAGenerator dfaGenerator) {
+        this(dfaGenerator.makeAlphabet(), dfaGenerator.makeStates(), dfaGenerator.makeStartState(), dfaGenerator.makeAcceptStates(), dfaGenerator.makeTransitions());
+    }
 
     public DFA(HashSet<Character> alphabet, HashSet<Integer> states, Integer start_state,
                HashSet<Integer> accept_states, Table<Integer, Character, Integer> transitions) {

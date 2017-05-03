@@ -2,9 +2,9 @@ package test.java;
 
 import main.java.DFA;
 import main.java.exceptions.InvalidDFAInput;
+import main.java.generators.SimpleGenerator;
+import main.java.generators.TrivialGenerator;
 import org.junit.jupiter.api.Test;
-import test.java.generators.SimpleGenerator;
-import test.java.generators.TrivialGenerator;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -19,28 +19,28 @@ import static org.junit.jupiter.api.Assertions.*;
 class AcceptsTest {
     @Test
     void throwsIfInputNotInAlphabet() {
-        DFA dfa = new TrivialGenerator().generate();
+        DFA dfa = new DFA(new TrivialGenerator());
         assertThrows(InvalidDFAInput.class, () -> dfa.accepts(Collections.singletonList('a')));
     }
 
     @Test
     void acceptsEmptyString() {
-        assertTrue(new SimpleGenerator().generate().accepts(Collections.emptyList()));
+        assertTrue(new DFA(new SimpleGenerator()).accepts(Collections.emptyList()));
     }
 
     @Test
     void acceptsC() {
-        assertTrue(new SimpleGenerator().generate().accepts(Arrays.asList('c')));
+        assertTrue(new DFA(new SimpleGenerator()).accepts(Arrays.asList('c')));
     }
 
     @Test
     void acceptsABABCC() {
-        assertTrue(new SimpleGenerator().generate().accepts(Arrays.asList('a', 'b', 'a', 'b', 'c', 'c')));
+        assertTrue(new DFA(new SimpleGenerator()).accepts(Arrays.asList('a', 'b', 'a', 'b', 'c', 'c')));
     }
 
     @Test
     void doesNotAcceptABA() {
-        assertFalse(new SimpleGenerator().generate().accepts(Arrays.asList('a', 'b', 'a')));
+        assertFalse(new DFA(new SimpleGenerator()).accepts(Arrays.asList('a', 'b', 'a')));
     }
 
     @Test
@@ -48,7 +48,7 @@ class AcceptsTest {
         List<Character> input = longABs();
         input.add('c');
 
-        assertTrue(new SimpleGenerator().generate().accepts(input));
+        assertTrue(new DFA(new SimpleGenerator()).accepts(input));
     }
 
     List<Character> longABs() {
