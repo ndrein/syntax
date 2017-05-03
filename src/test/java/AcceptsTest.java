@@ -1,23 +1,25 @@
 package test.java;
 
+import main.java.exceptions.InvalidDFAInput;
 import org.junit.jupiter.api.Test;
 import test.java.factories.SimpleFactory;
+import test.java.factories.TrivialFactory;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Created by ndrei on 2017-05-02.
  */
-class SimpleDFATest extends DFATest {
+class AcceptsTest extends DFATest {
     @Test
-    void testConstructor() {
-        new SimpleFactory().generate();
+    void throwsIfInputNotInAlphabet() {
+        dfa = new TrivialFactory().generate();
+        assertThrows(InvalidDFAInput.class, () -> dfa.accepts(Collections.singletonList('a')));
     }
 
     @Test
