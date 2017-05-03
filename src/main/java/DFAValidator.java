@@ -1,10 +1,7 @@
 package main.java;
 
 import com.google.common.collect.Table;
-import main.java.exceptions.AcceptStatesNotContainedInStates;
-import main.java.exceptions.IncompleteTransitions;
-import main.java.exceptions.InvalidTransition;
-import main.java.exceptions.StartStateNotInStates;
+import main.java.exceptions.*;
 
 import java.util.HashSet;
 
@@ -14,8 +11,7 @@ import java.util.HashSet;
 class DFAValidator {
     static void validate(HashSet<Character> alphabet,
                          HashSet<Integer> states, Integer start_state, HashSet<Integer> accept_states,
-                         Table<Integer, Character, Integer> transitions) {
-        // Throws exception if not valid
+                         Table<Integer, Character, Integer> transitions) throws InvalidDFAConstruction {
         checkStartState(start_state, states);
         checkAcceptStates(accept_states, states);
         checkTransitions(transitions, states, alphabet);
