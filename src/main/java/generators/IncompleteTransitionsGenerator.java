@@ -2,13 +2,11 @@ package main.java.generators;
 
 import com.google.common.collect.HashBasedTable;
 import com.google.common.collect.Table;
+import main.java.State;
 
 import java.util.Arrays;
 import java.util.HashSet;
 
-/**
- * Created by ndrei on 2017-05-02.
- */
 public class IncompleteTransitionsGenerator extends DFAGenerator {
     @Override
     public HashSet<Character> makeAlphabet() {
@@ -16,26 +14,26 @@ public class IncompleteTransitionsGenerator extends DFAGenerator {
     }
 
     @Override
-    public HashSet<Integer> makeStates() {
-        return new HashSet<>(Arrays.asList(0, 1));
+    public HashSet<State> makeStates() {
+        return new HashSet<State>(Arrays.asList(new State(0), new State(1)));
     }
 
     @Override
-    public Integer makeStartState() {
-        return 0;
+    public State makeStartState() {
+        return new State(0);
     }
 
     @Override
-    public HashSet<Integer> makeAcceptStates() {
-        return new HashSet<>();
+    public HashSet<State> makeAcceptStates() {
+        return new HashSet<State>();
     }
 
     @Override
-    public Table<Integer, Character, Integer> makeTransitions() {
-        Table<Integer, Character, Integer> transitions = HashBasedTable.create();
-        transitions.put(0, 'a', 0);
-        transitions.put(0, 'b', 1);
-        transitions.put(1, 'b', 0);
+    public Table<State, Character, State> makeTransitions() {
+        Table<State, Character, State> transitions = HashBasedTable.create();
+        transitions.put(new State(0), 'a', new State(0));
+        transitions.put(new State(0), 'b', new State(1));
+        transitions.put(new State(1), 'b', new State(0));
         return transitions;
     }
 }

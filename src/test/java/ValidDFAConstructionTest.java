@@ -5,9 +5,6 @@ import main.java.generators.SimpleGenerator;
 import main.java.generators.TrivialGenerator;
 import org.junit.jupiter.api.Test;
 
-/**
- * Created by ndrei on 2017-05-02.
- */
 public class ValidDFAConstructionTest {
     @Test
     void testConstructingTrivialDFA() {

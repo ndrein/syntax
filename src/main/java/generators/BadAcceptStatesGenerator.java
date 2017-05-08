@@ -2,13 +2,11 @@ package main.java.generators;
 
 import com.google.common.collect.HashBasedTable;
 import com.google.common.collect.Table;
+import main.java.State;
 
 import java.util.Arrays;
 import java.util.HashSet;
 
-/**
- * Created by ndrei on 2017-05-02.
- */
 public class BadAcceptStatesGenerator extends DFAGenerator {
     @Override
     public HashSet<Character> makeAlphabet() {
@@ -16,22 +14,22 @@ public class BadAcceptStatesGenerator extends DFAGenerator {
     }
 
     @Override
-    public Integer makeStartState() {
-        return 0;
+    public State makeStartState() {
+        return new State(0);
     }
 
     @Override
-    public HashSet<Integer> makeStates() {
-        return new HashSet<>(Arrays.asList(0, 1, 2));
+    public HashSet<State> makeStates() {
+        return new HashSet<State>(Arrays.asList(new State(0), new State(1), new State(2)));
     }
 
     @Override
-    public HashSet<Integer> makeAcceptStates() {
-        return new HashSet<>(Arrays.asList(0, 3));
+    public HashSet<State> makeAcceptStates() {
+        return new HashSet<State>(Arrays.asList(new State(0), new State(3)));
     }
 
     @Override
-    public Table<Integer, Character, Integer> makeTransitions() {
+    public Table<State, Character, State> makeTransitions() {
         return HashBasedTable.create();
     }
 }

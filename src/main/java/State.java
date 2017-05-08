@@ -1,17 +1,24 @@
 package main.java;
 
-/**
- * Created by ndrei on 2017-05-03.
- */
+
 public class State {
-    private Integer integer;
+    final private Integer integer;
 
     public State(Integer i) {
         this.integer = i;
     }
 
+    public Integer getInt() {
+        return integer;
+    }
+
     @Override
-    public boolean equals(Object obj) {
-        return super.equals(obj);
+    public boolean equals(Object other) {
+        return other.getClass() == this.getClass() && ((State) other).integer.equals(integer);
+    }
+
+    @Override
+    public int hashCode() {
+        return integer.hashCode();
     }
 }

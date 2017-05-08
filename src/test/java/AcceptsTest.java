@@ -13,9 +13,6 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-/**
- * Created by ndrei on 2017-05-02.
- */
 class AcceptsTest {
     @Test
     void throwsIfInputNotInAlphabet() {

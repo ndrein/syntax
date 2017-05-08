@@ -2,14 +2,12 @@ package main.java.generators;
 
 import com.google.common.collect.HashBasedTable;
 import com.google.common.collect.Table;
+import main.java.State;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 
-/**
- * Created by ndrei on 2017-05-02.
- */
 public class EmptyStateSetGenerator extends DFAGenerator {
     @Override
     public HashSet<Character> makeAlphabet() {
@@ -17,22 +15,22 @@ public class EmptyStateSetGenerator extends DFAGenerator {
     }
 
     @Override
-    public HashSet<Integer> makeStates() {
+    public HashSet<State> makeStates() {
         return new HashSet<>(Collections.emptyList());
     }
 
     @Override
-    public Integer makeStartState() {
-        return 0;
+    public State makeStartState() {
+        return new State(0);
     }
 
     @Override
-    public HashSet<Integer> makeAcceptStates() {
-        return new HashSet<>();
+    public HashSet<State> makeAcceptStates() {
+        return new HashSet<State>();
     }
 
     @Override
-    public Table<Integer, Character, Integer> makeTransitions() {
+    public Table<State, Character, State> makeTransitions() {
         return HashBasedTable.create();
     }
 }

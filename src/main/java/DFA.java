@@ -7,22 +7,19 @@ import main.java.generators.DFAGenerator;
 import java.util.HashSet;
 import java.util.List;
 
-/**
- * Created by ndrei on 2017-04-27.
- */
 public class DFA {
     final private HashSet<Character> alphabet;
-    final private HashSet<Integer> states;
-    final private Integer start_state;
-    final private HashSet<Integer> accept_states;
-    final private Table<Integer, Character, Integer> transitions;
+    final private HashSet<State> states;
+    final private State start_state;
+    final private HashSet<State> accept_states;
+    final private Table<State, Character, State> transitions;
 
     public DFA(DFAGenerator dfaGenerator) {
         this(dfaGenerator.makeAlphabet(), dfaGenerator.makeStates(), dfaGenerator.makeStartState(), dfaGenerator.makeAcceptStates(), dfaGenerator.makeTransitions());
     }
 
-    public DFA(HashSet<Character> alphabet, HashSet<Integer> states, Integer start_state,
-               HashSet<Integer> accept_states, Table<Integer, Character, Integer> transitions) {
+    public DFA(HashSet<Character> alphabet, HashSet<State> states, State start_state,
+               HashSet<State> accept_states, Table<State, Character, State> transitions) {
         DFAValidator.validate(alphabet, states, start_state, accept_states, transitions);
 
         this.alphabet = alphabet;
@@ -36,8 +33,8 @@ public class DFA {
         return accept_states.contains(traverse(input));
     }
 
-    private Integer traverse(List<Character> input) {
-        Integer q = start_state;
+    private State traverse(List<Character> input) {
+        State q = start_state;
 
         for (Character c : input) {
             q = transition(q, c);
@@ -46,8 +43,8 @@ public class DFA {
         return q;
     }
 
-    private Integer transition(Integer q, Character c) {
-        Integer next = transitions.get(q, c);
+    private State transition(State q, Character c) {
+        State next = transitions.get(q, c);
 
         if (next == null)
             throw new InvalidDFAInput();
