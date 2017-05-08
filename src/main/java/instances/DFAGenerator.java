@@ -1,4 +1,4 @@
-package main.java.generators;
+package main.java.instances;
 
 import com.google.common.collect.Table;
 import main.java.State;
