@@ -6,11 +6,11 @@ import main.java.State;
 import java.util.HashSet;
 
 public interface DFAInstanceImplementation {
-    final HashSet<Character> alphabet = makeAlphabet();
-    final HashSet<State> states = makeStates();
-    final State start_state = makeStartState();
-    final HashSet<State> accept_states = makeAcceptStates();
-    final Table<State, Character, State> transitions = makeTransitions();
+    HashSet<Character> alphabet = makeAlphabet();
+    HashSet<State> states = makeStates();
+    State start_state = makeStartState();
+    HashSet<State> accept_states = makeAcceptStates();
+    Table<State, Character, State> transitions = makeTransitions();
 
     static HashSet<Character> makeAlphabet() {
         return null;

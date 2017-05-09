@@ -28,27 +28,28 @@ public class TrivialInstance extends DFAInstance implements DFAInstanceImplement
 //    static public HashSet<State> makeAcceptStates() {return null;}
 //
 //    static public Table<State, Character, State> makeTransitions() {return null;}
-    static HashSet<Character> makeAlphabet() {
+
+    static public HashSet<Character> makeAlphabet() {
         return new HashSet<>();
     }
 
 
-    public HashSet<State> makeStates() {
+    static public HashSet<State> makeStates() {
         return new HashSet<State>(Collections.singletonList(new State(0)));
     }
 
 
-    public State makeStartState() {
+    static public State makeStartState() {
         return new State(0);
     }
 
 
-    public HashSet<State> makeAcceptStates() {
+    static public HashSet<State> makeAcceptStates() {
         return new HashSet<State>();
     }
 
 
-    public Table<State, Character, State> makeTransitions() {
+    static public Table<State, Character, State> makeTransitions() {
         return HashBasedTable.create();
     }
 }
