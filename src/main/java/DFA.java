@@ -5,7 +5,6 @@ import main.java.exceptions.InvalidDFAInput;
 import main.java.generators.DFAGenerator;
 
 import java.util.HashSet;
-import java.util.List;
 
 public class DFA {
     final private HashSet<Character> alphabet;
@@ -29,11 +28,11 @@ public class DFA {
         this.transitions = transitions;
     }
 
-    public boolean accepts(List<Character> input) {
+    public boolean accepts(Iterable<Character> input) {
         return accept_states.contains(traverse(input));
     }
 
-    private State traverse(List<Character> input) {
+    private State traverse(Iterable<Character> input) {
         State q = start_state;
 
         for (Character c : input) {
