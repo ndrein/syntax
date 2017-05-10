@@ -6,8 +6,8 @@ import main.java.exceptions.*;
 import java.util.HashSet;
 
 class DFAValidator {
-    static void validate(HashSet<Character> alphabet,
-                         HashSet<State> states, State start_state, HashSet<State> accept_states,
+    static void validate(HashSet<Character> alphabet, HashSet<State> states,
+                         State start_state, HashSet<State> accept_states,
                          Table<State, Character, State> transitions) throws InvalidDFAConstruction {
         checkStartState(start_state, states);
         checkAcceptStates(accept_states, states);
