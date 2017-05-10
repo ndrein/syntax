@@ -8,12 +8,12 @@ import org.junit.jupiter.api.Test;
 public class ValidDFAConstructionTest {
     @Test
     void testConstructingTrivialDFA() {
-        new DFA(new TrivialGenerator());
+        new TrivialGenerator().generate();
 //        new TrivialInstance();
     }
 
     @Test
     void testConstructingSimpleDFA() {
-        new DFA(new SimpleGenerator());
+        new SimpleGenerator().generate();
     }
 }

@@ -14,10 +14,6 @@ public class DFA {
     final private HashSet<State> accept_states;
     final private Table<State, Character, State> transitions;
 
-    public DFA(DFAGenerator dfaGenerator) {
-        this(dfaGenerator.makeAlphabet(), dfaGenerator.makeStates(), dfaGenerator.makeStartState(), dfaGenerator.makeAcceptStates(), dfaGenerator.makeTransitions());
-    }
-
     public DFA(HashSet<Character> alphabet, HashSet<State> states, State start_state,
                HashSet<State> accept_states, Table<State, Character, State> transitions) {
         DFAValidator.validate(alphabet, states, start_state, accept_states, transitions);

@@ -16,28 +16,28 @@ import static org.junit.jupiter.api.Assertions.*;
 class AcceptsTest {
     @Test
     void throwsIfInputNotInAlphabet() {
-        DFA dfa = new DFA(new TrivialGenerator());
+        DFA dfa = new TrivialGenerator().generate();
         assertThrows(InvalidDFAInput.class, () -> dfa.accepts(Collections.singletonList('a')));
     }
 
     @Test
     void acceptsEmptyString() {
-        assertTrue(new DFA(new SimpleGenerator()).accepts(Collections.emptyList()));
+        assertTrue(new SimpleGenerator().generate().accepts(Collections.emptyList()));
     }
 
     @Test
     void acceptsC() {
-        assertTrue(new DFA(new SimpleGenerator()).accepts(Arrays.asList('c')));
+        assertTrue(new SimpleGenerator().generate().accepts(Arrays.asList('c')));
     }
 
     @Test
     void acceptsABABCC() {
-        assertTrue(new DFA(new SimpleGenerator()).accepts(Arrays.asList('a', 'b', 'a', 'b', 'c', 'c')));
+        assertTrue(new SimpleGenerator().generate().accepts(Arrays.asList('a', 'b', 'a', 'b', 'c', 'c')));
     }
 
     @Test
     void doesNotAcceptABA() {
-        assertFalse(new DFA(new SimpleGenerator()).accepts(Arrays.asList('a', 'b', 'a')));
+        assertFalse(new SimpleGenerator().generate().accepts(Arrays.asList('a', 'b', 'a')));
     }
 
     @Test
@@ -45,7 +45,7 @@ class AcceptsTest {
         List<Character> input = longABs();
         input.add('c');
 
-        assertTrue(new DFA(new SimpleGenerator()).accepts(input));
+        assertTrue(new SimpleGenerator().generate().accepts(input));
     }
 
     List<Character> longABs() {
