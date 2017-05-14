@@ -1,5 +1,5 @@
 package main.java;
 
-public interface Input {
-    Character get();
+public interface Input<InputT> {
+    InputT get();
 }

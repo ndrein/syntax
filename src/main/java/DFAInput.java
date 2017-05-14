@@ -7,7 +7,7 @@ public class DFAInput implements Input, Output {
     private int i = 0;
 
     @Override
-    public Character get() {
+    public T get() {
         return input.get(i);
     }
 
