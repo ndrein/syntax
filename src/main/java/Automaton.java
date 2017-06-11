@@ -2,21 +2,16 @@ package main.java;
 
 import java.lang.reflect.Executable;
 
-/**
- * Created by ndrei on 2017-05-10.
- */
+
 abstract class Automaton<InputT> {
     State cur_state;
-    Input<InputT> data;
-    Output output;
+    Inputter<InputT> data;
+    Outputter<InputT> outputter;
 
     protected void transition() {
-        InputT next_char = data.get();
-        cur_state = next_state(cur_state, next_char);
-
-        for (Executable e : output()) {
-            // TODO: execute e
-        }
+        InputT input = data.get();
+        cur_state = next_state(cur_state, input);
+        outputter.output(cur_state, input);
     }
 
     abstract Iterable<Executable> output();

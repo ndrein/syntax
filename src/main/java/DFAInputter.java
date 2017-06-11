@@ -2,16 +2,12 @@ package main.java;
 
 import java.util.List;
 
-public class DFAInput implements Input, Output {
+public class DFAInputter implements Inputter<Character> {
     private List<Character> input;
     private int i = 0;
 
     @Override
-    public T get() {
+    public Character get() {
         return input.get(i);
-    }
-
-    @Override
-    public void output(State q, Character c) {
     }
 }
