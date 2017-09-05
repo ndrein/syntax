@@ -1,20 +1,32 @@
 package main.java;
 
-import java.lang.reflect.Executable;
-
-
 abstract class Automaton<InputT> {
-    State cur_state;
-    Inputter<InputT> data;
-    Outputter<InputT> outputter;
+    private State cur_state;
+    private Inputter<InputT> input;
+    private Outputter<InputT> output;
 
-    protected void transition() {
-        InputT input = data.get();
-        cur_state = next_state(cur_state, input);
-        outputter.output(cur_state, input);
+    public Automaton(Outputter<InputT> output) {
+        this.output = output;
     }
 
-    abstract Iterable<Executable> output();
+    private void transition() throws Termination {
+        InputT input = this.input.get();
+        cur_state = next_state(cur_state, input);
+        output.output(cur_state, input);
+    }
+
+    public Boolean accepts(Inputter<InputT> input) {
+        this.input = input;
+
+        while (true) {
+            try {
+                this.transition();
+            } catch (Termination termination) {
+                return termination.get_accepted();
+            }
+        }
+    }
 
     abstract State next_state(State cur_state, InputT input);
 }
+
