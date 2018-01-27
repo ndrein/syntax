@@ -1,19 +1,19 @@
 package test.java;
 
-import main.java.DFA;
 import main.java.generators.SimpleGenerator;
 import main.java.generators.TrivialGenerator;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
+//import org.junit.jupiter.api.Test;
 
 public class ValidDFAConstructionTest {
     @Test
-    void testConstructingTrivialDFA() {
+    public void testConstructingTrivialDFA() {
         new TrivialGenerator().generate();
 //        new TrivialInstance();
     }
 
     @Test
-    void testConstructingSimpleDFA() {
+    public void testConstructingSimpleDFA() {
         new SimpleGenerator().generate();
     }
 }
