@@ -1,6 +1,7 @@
 package org.syntax.generators;
 
 import com.google.common.collect.HashBasedTable;
+import com.google.common.collect.Table;
 import org.syntax.State;
 
 import java.util.Arrays;
@@ -14,7 +15,7 @@ public class SimpleGenerator extends DFAGenerator {
 
     @Override
     public HashSet<State> makeStates() {
-        return new HashSet<State>(Arrays.asList(new State(0), new State(1), new State(2)));
+        return new HashSet<>(Arrays.asList(new State(0), new State(1), new State(2)));
     }
 
     @Override
@@ -24,11 +25,11 @@ public class SimpleGenerator extends DFAGenerator {
 
     @Override
     public HashSet<State> makeAcceptStates() {
-        return new HashSet<State>(Arrays.asList(new State(0), new State(2)));
+        return new HashSet<>(Arrays.asList(new State(0), new State(2)));
     }
 
     @Override
-    public HashBasedTable<State, Character, State> makeTransitions() {
+    public Table<State, Character, State> makeTransitions() {
         HashBasedTable<State, Character, State> transitions = HashBasedTable.create();
 
         transitions.put(new State(0), 'a', new State(1));
