@@ -7,22 +7,25 @@ import org.syntax.exceptions.AcceptStatesNotContainedInStates;
 import org.syntax.exceptions.IncompleteTransitions;
 import org.syntax.exceptions.InvalidTransition;
 import org.syntax.exceptions.StartStateNotInStates;
-import org.syntax.generators.EmptyStateSetGenerator;
 import org.syntax.generators.IncompleteTransitionsGenerator;
 import org.syntax.generators.TransitionToInvalidStateGenerator;
+
+import java.util.HashSet;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class InvalidDfaConstructionsTest {
     @Test
     void cantConstructWithEmptyStateSet() {
-        assertThrows(StartStateNotInStates.class, () -> new EmptyStateSetGenerator().generate());
+        assertThrows(StartStateNotInStates.class,
+                () -> new Dfa(Sets.newHashSet('a', 'b'), Sets.newHashSet(), new State(0), new HashSet<>(), HashBasedTable.create()));
     }
 
     @Test
     void badAcceptStates() {
-        assertThrows(AcceptStatesNotContainedInStates.class, () -> new Dfa(Sets.newHashSet('a', 'b'), Sets.newHashSet(new State(0), new State(1), new State(2)), new State(0),
-                Sets.newHashSet(new State(0), new State(3)), HashBasedTable.create()));
+        assertThrows(AcceptStatesNotContainedInStates.class,
+                () -> new Dfa(Sets.newHashSet('a', 'b'), Sets.newHashSet(new State(0), new State(1), new State(2)),
+                        new State(0), Sets.newHashSet(new State(0), new State(3)), HashBasedTable.create()));
     }
 
     @Test
