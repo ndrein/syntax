@@ -12,7 +12,7 @@ import org.syntax.generators.TransitionToInvalidStateGenerator;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-class InvalidDFAConstructionsTest {
+class InvalidDfaConstructionsTest {
     @Test
     void cantConstructWithEmptyStateSet() {
         assertThrows(StartStateNotInStates.class, () -> new EmptyStateSetGenerator().generate());

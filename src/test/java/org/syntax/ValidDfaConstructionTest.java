@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.syntax.generators.SimpleGenerator;
 import org.syntax.generators.TrivialGenerator;
 
-class ValidDFAConstructionTest {
+class ValidDfaConstructionTest {
     @Test
     void testConstructingTrivialDFA() {
         new TrivialGenerator().generate();

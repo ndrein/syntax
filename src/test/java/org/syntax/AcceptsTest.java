@@ -10,15 +10,13 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 class AcceptsTest {
     @Test
     void throwsIfInputNotInAlphabet() {
-        DFA dfa = new TrivialGenerator().generate();
+        Dfa dfa = new TrivialGenerator().generate();
         assertThrows(InvalidDFAInput.class, () -> dfa.accepts(Collections.singletonList('a')));
     }
 
