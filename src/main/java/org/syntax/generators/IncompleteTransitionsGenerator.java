@@ -15,7 +15,7 @@ public class IncompleteTransitionsGenerator extends DFAGenerator {
 
     @Override
     public HashSet<State> makeStates() {
-        return new HashSet<State>(Arrays.asList(new State(0), new State(1)));
+        return new HashSet<>(Arrays.asList(new State(0), new State(1)));
     }
 
     @Override
@@ -25,7 +25,7 @@ public class IncompleteTransitionsGenerator extends DFAGenerator {
 
     @Override
     public HashSet<State> makeAcceptStates() {
-        return new HashSet<State>();
+        return new HashSet<>();
     }
 
     @Override

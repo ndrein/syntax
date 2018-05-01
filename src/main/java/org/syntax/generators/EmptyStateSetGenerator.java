@@ -26,7 +26,7 @@ public class EmptyStateSetGenerator extends DFAGenerator {
 
     @Override
     public HashSet<State> makeAcceptStates() {
-        return new HashSet<State>();
+        return new HashSet<>();
     }
 
     @Override

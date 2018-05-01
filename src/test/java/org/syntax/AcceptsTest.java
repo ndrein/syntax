@@ -29,7 +29,7 @@ class AcceptsTest {
 
     @Test
     void acceptsC() {
-        assertTrue(new SimpleGenerator().generate().accepts(Arrays.asList('c')));
+        assertTrue(new SimpleGenerator().generate().accepts(Collections.singletonList('c')));
     }
 
     @Test

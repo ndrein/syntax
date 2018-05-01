@@ -16,7 +16,7 @@ public class TrivialGenerator extends DFAGenerator {
 
     @Override
     public HashSet<State> makeStates() {
-        return new HashSet<State>(Collections.singletonList(new State(0)));
+        return new HashSet<>(Collections.singletonList(new State(0)));
     }
 
     @Override
@@ -26,7 +26,7 @@ public class TrivialGenerator extends DFAGenerator {
 
     @Override
     public HashSet<State> makeAcceptStates() {
-        return new HashSet<State>();
+        return new HashSet<>();
     }
 
     @Override

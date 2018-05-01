@@ -20,12 +20,12 @@ public class BadAcceptStatesGenerator extends DFAGenerator {
 
     @Override
     public HashSet<State> makeStates() {
-        return new HashSet<State>(Arrays.asList(new State(0), new State(1), new State(2)));
+        return new HashSet<>(Arrays.asList(new State(0), new State(1), new State(2)));
     }
 
     @Override
     public HashSet<State> makeAcceptStates() {
-        return new HashSet<State>(Arrays.asList(new State(0), new State(3)));
+        return new HashSet<>(Arrays.asList(new State(0), new State(3)));
     }
 
     @Override
