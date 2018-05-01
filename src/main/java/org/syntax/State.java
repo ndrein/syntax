@@ -10,7 +10,7 @@ public class State {
         this.integer = i;
     }
 
-    public int getInt() {
+    int getInt() {
         return integer;
     }
 
