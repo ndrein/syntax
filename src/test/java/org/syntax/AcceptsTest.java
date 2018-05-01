@@ -1,14 +1,11 @@
 package org.syntax;
 
+import com.google.common.collect.HashBasedTable;
 import org.junit.jupiter.api.Test;
 import org.syntax.exceptions.InvalidDFAInput;
 import org.syntax.generators.SimpleGenerator;
-import org.syntax.generators.TrivialDfa;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -16,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class AcceptsTest {
     @Test
     void throwsIfInputNotInAlphabet() {
-        Dfa dfa = new TrivialDfa();
+        Dfa dfa = new Dfa(new HashSet<>(), Collections.singleton(new State(0)), new State(0), new HashSet<>(), HashBasedTable.create());
         assertThrows(InvalidDFAInput.class, () -> dfa.accepts(Collections.singletonList('a')));
     }
 

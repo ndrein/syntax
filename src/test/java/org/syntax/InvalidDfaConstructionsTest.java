@@ -1,11 +1,12 @@
 package org.syntax;
 
+import com.google.common.collect.HashBasedTable;
+import com.google.common.collect.Sets;
 import org.junit.jupiter.api.Test;
 import org.syntax.exceptions.AcceptStatesNotContainedInStates;
 import org.syntax.exceptions.IncompleteTransitions;
 import org.syntax.exceptions.InvalidTransition;
 import org.syntax.exceptions.StartStateNotInStates;
-import org.syntax.generators.BadAcceptStatesDfa;
 import org.syntax.generators.EmptyStateSetGenerator;
 import org.syntax.generators.IncompleteTransitionsGenerator;
 import org.syntax.generators.TransitionToInvalidStateGenerator;
@@ -20,7 +21,8 @@ class InvalidDfaConstructionsTest {
 
     @Test
     void badAcceptStates() {
-        assertThrows(AcceptStatesNotContainedInStates.class, BadAcceptStatesDfa::new);
+        assertThrows(AcceptStatesNotContainedInStates.class, () -> new Dfa(Sets.newHashSet('a', 'b'), Sets.newHashSet(new State(0), new State(1), new State(2)), new State(0),
+                Sets.newHashSet(new State(0), new State(3)), HashBasedTable.create()));
     }
 
     @Test
