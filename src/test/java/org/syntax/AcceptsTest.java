@@ -3,7 +3,7 @@ package org.syntax;
 import org.junit.jupiter.api.Test;
 import org.syntax.exceptions.InvalidDFAInput;
 import org.syntax.generators.SimpleGenerator;
-import org.syntax.generators.TrivialGenerator;
+import org.syntax.generators.TrivialDfa;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class AcceptsTest {
     @Test
     void throwsIfInputNotInAlphabet() {
-        Dfa dfa = new TrivialGenerator().generate();
+        Dfa dfa = new TrivialDfa();
         assertThrows(InvalidDFAInput.class, () -> dfa.accepts(Collections.singletonList('a')));
     }
 

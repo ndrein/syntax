@@ -5,7 +5,7 @@ import org.syntax.exceptions.AcceptStatesNotContainedInStates;
 import org.syntax.exceptions.IncompleteTransitions;
 import org.syntax.exceptions.InvalidTransition;
 import org.syntax.exceptions.StartStateNotInStates;
-import org.syntax.generators.BadAcceptStatesGenerator;
+import org.syntax.generators.BadAcceptStatesDfa;
 import org.syntax.generators.EmptyStateSetGenerator;
 import org.syntax.generators.IncompleteTransitionsGenerator;
 import org.syntax.generators.TransitionToInvalidStateGenerator;
@@ -20,7 +20,7 @@ class InvalidDfaConstructionsTest {
 
     @Test
     void badAcceptStates() {
-        assertThrows(AcceptStatesNotContainedInStates.class, () -> new BadAcceptStatesGenerator().generate());
+        assertThrows(AcceptStatesNotContainedInStates.class, BadAcceptStatesDfa::new);
     }
 
     @Test
