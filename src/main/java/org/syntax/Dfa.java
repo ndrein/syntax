@@ -10,10 +10,10 @@ public class Dfa {
     final private Set<State> accept_states;
     final private Table<State, Character, State> transitions;
 
-    public Dfa(Set<Character> alphabet, Set<State> states, State start_state, Set<State> accept_states, Table<State, Character, State> transitions) {
-        DFAValidator.validate(alphabet, states, start_state, accept_states, transitions);
+    public Dfa(Set<Character> alphabet, Set<State> states, State startState, Set<State> accept_states, Table<State, Character, State> transitions) {
+        DFAValidator.validate(alphabet, states, startState, accept_states, transitions);
 
-        this.start_state = start_state;
+        this.start_state = startState;
         this.accept_states = accept_states;
         this.transitions = transitions;
     }
