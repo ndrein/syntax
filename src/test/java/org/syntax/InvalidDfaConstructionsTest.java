@@ -2,15 +2,17 @@ package org.syntax;
 
 import com.google.common.collect.HashBasedTable;
 import com.google.common.collect.Sets;
+import com.google.common.collect.Table;
 import org.junit.jupiter.api.Test;
 import org.syntax.exceptions.AcceptStatesNotContainedInStates;
 import org.syntax.exceptions.IncompleteTransitions;
 import org.syntax.exceptions.InvalidTransition;
 import org.syntax.exceptions.StartStateNotInStates;
-import org.syntax.generators.IncompleteTransitionsGenerator;
 import org.syntax.generators.TransitionToInvalidStateGenerator;
 
+import java.util.Collections;
 import java.util.HashSet;
+import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -30,7 +32,16 @@ class InvalidDfaConstructionsTest {
 
     @Test
     void incompleteTransitions() {
-        assertThrows(IncompleteTransitions.class, () -> new IncompleteTransitionsGenerator().generate());
+        Set<Character> alphabet = Sets.newHashSet('a', 'b');
+        State startState = new State(0);
+        Set<State> states = Sets.newHashSet(startState, new State(1));
+        Set<State> acceptStates = Collections.emptySet();
+        Table<State, Character, State> transitions = HashBasedTable.create();
+        transitions.put(new State(0), 'a', new State(0));
+        transitions.put(new State(0), 'b', new State(1));
+        transitions.put(new State(1), 'b', new State(0));
+
+        assertThrows(IncompleteTransitions.class, () -> new Dfa(alphabet, states, startState, acceptStates, transitions));
     }
 
     @Test

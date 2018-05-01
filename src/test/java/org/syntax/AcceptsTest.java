@@ -3,7 +3,6 @@ package org.syntax;
 import com.google.common.collect.HashBasedTable;
 import org.junit.jupiter.api.Test;
 import org.syntax.exceptions.InvalidDFAInput;
-import org.syntax.generators.SimpleGenerator;
 
 import java.util.*;
 
@@ -19,22 +18,22 @@ class AcceptsTest {
 
     @Test
     void acceptsEmptyString() {
-        assertTrue(new SimpleGenerator().generate().accepts(Collections.emptyList()));
+        assertTrue(new SimpleDfa().accepts(Collections.emptyList()));
     }
 
     @Test
     void acceptsC() {
-        assertTrue(new SimpleGenerator().generate().accepts(Collections.singletonList('c')));
+        assertTrue(new SimpleDfa().accepts(Collections.singletonList('c')));
     }
 
     @Test
     void acceptsABABCC() {
-        assertTrue(new SimpleGenerator().generate().accepts(Arrays.asList('a', 'b', 'a', 'b', 'c', 'c')));
+        assertTrue(new SimpleDfa().accepts(Arrays.asList('a', 'b', 'a', 'b', 'c', 'c')));
     }
 
     @Test
     void doesNotAcceptABA() {
-        assertFalse(new SimpleGenerator().generate().accepts(Arrays.asList('a', 'b', 'a')));
+        assertFalse(new SimpleDfa().accepts(Arrays.asList('a', 'b', 'a')));
     }
 
     @Test
@@ -42,7 +41,7 @@ class AcceptsTest {
         List<Character> input = longABs();
         input.add('c');
 
-        assertTrue(new SimpleGenerator().generate().accepts(input));
+        assertTrue(new SimpleDfa().accepts(input));
     }
 
     private List<Character> longABs() {
