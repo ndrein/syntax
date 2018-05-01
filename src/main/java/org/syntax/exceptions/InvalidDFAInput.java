@@ -1,4 +1,4 @@
-package main.java.exceptions;
+package org.syntax.exceptions;
 
 public class InvalidDFAInput extends RuntimeException {
 

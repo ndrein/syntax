@@ -1,4 +1,4 @@
-package main.java;
+package org.syntax;
 
 
 import java.util.Objects;

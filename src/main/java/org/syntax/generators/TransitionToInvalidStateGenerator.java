@@ -1,8 +1,8 @@
-package main.java.generators;
+package org.syntax.generators;
 
 import com.google.common.collect.HashBasedTable;
 import com.google.common.collect.Table;
-import main.java.State;
+import org.syntax.State;
 
 import java.util.Arrays;
 import java.util.HashSet;

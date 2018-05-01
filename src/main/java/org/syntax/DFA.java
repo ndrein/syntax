@@ -1,7 +1,7 @@
-package main.java;
+package org.syntax;
 
 import com.google.common.collect.Table;
-import main.java.exceptions.InvalidDFAInput;
+import org.syntax.exceptions.InvalidDFAInput;
 
 import java.util.Set;
 

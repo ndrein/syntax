@@ -1,22 +1,22 @@
-package main.java.generators;
+package org.syntax.generators;
 
 import com.google.common.collect.HashBasedTable;
 import com.google.common.collect.Table;
-import main.java.State;
+import org.syntax.State;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 
-public class EmptyStateSetGenerator extends DFAGenerator {
+
+public class TrivialGenerator extends DFAGenerator {
     @Override
     public HashSet<Character> makeAlphabet() {
-        return new HashSet<>(Arrays.asList('a', 'b'));
+        return new HashSet<>();
     }
 
     @Override
     public HashSet<State> makeStates() {
-        return new HashSet<>(Collections.emptyList());
+        return new HashSet<State>(Collections.singletonList(new State(0)));
     }
 
     @Override
@@ -34,3 +34,4 @@ public class EmptyStateSetGenerator extends DFAGenerator {
         return HashBasedTable.create();
     }
 }
+

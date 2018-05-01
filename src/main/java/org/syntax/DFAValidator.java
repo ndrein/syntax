@@ -1,7 +1,7 @@
-package main.java;
+package org.syntax;
 
 import com.google.common.collect.Table;
-import main.java.exceptions.*;
+import org.syntax.exceptions.*;
 
 import java.util.Set;
 

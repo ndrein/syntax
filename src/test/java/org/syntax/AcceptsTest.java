@@ -1,47 +1,49 @@
-package test.java;
+package org.syntax;
 
-import main.java.DFA;
-import main.java.exceptions.InvalidDFAInput;
-import main.java.generators.SimpleGenerator;
-import main.java.generators.TrivialGenerator;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.syntax.exceptions.InvalidDFAInput;
+import org.syntax.generators.SimpleGenerator;
+import org.syntax.generators.TrivialGenerator;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class AcceptsTest {
+
+class AcceptsTest {
     @Test
-    public void throwsIfInputNotInAlphabet() {
+    void throwsIfInputNotInAlphabet() {
         DFA dfa = new TrivialGenerator().generate();
         assertThrows(InvalidDFAInput.class, () -> dfa.accepts(Collections.singletonList('a')));
     }
 
     @Test
-    public void acceptsEmptyString() {
+    void acceptsEmptyString() {
         assertTrue(new SimpleGenerator().generate().accepts(Collections.emptyList()));
     }
 
     @Test
-    public void acceptsC() {
+    void acceptsC() {
         assertTrue(new SimpleGenerator().generate().accepts(Arrays.asList('c')));
     }
 
     @Test
-    public void acceptsABABCC() {
+    void acceptsABABCC() {
         assertTrue(new SimpleGenerator().generate().accepts(Arrays.asList('a', 'b', 'a', 'b', 'c', 'c')));
     }
 
     @Test
-    public void doesNotAcceptABA() {
+    void doesNotAcceptABA() {
         assertFalse(new SimpleGenerator().generate().accepts(Arrays.asList('a', 'b', 'a')));
     }
 
     @Test
-    public void acceptsLongInput() {
+    void acceptsLongInput() {
         List<Character> input = longABs();
         input.add('c');
 
