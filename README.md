@@ -1,6 +1,6 @@
 # syntax
 
-Java implementation of deterministic finite automaton (DFA).
+Java implementation of a deterministic finite automaton (DFA).
 
 
 # Installation
