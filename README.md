@@ -1,2 +1,3 @@
 # syntax
-Java implementation of tokenizing and parsing.  Generate a parse tree.
+
+Java implementation of deterministic finite automaton (DFA).
